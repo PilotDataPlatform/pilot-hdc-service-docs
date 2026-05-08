@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html data-theme="">
+<head>
+  <title>OpenAPI Docs</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0&icon_names=search" />
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.26.2/swagger-ui.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.9/dist/css/autoComplete.02.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.9/dist/autoComplete.min.js"></script>
+  <style>#search-button {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  padding: 4px 12px 4px 8px;
+  cursor: pointer;
+
+  .icon {
+    font-size: 18px;
+    margin-right: 4px;
+  }
+}
+
+#search-dialog {
+  position: fixed;
+  top: 10px;
+  margin: 0 auto;
+  height: 100%;
+  background: transparent;
+  border: none;
+
+  .auto-complete-list {
+    max-height: 265px;
+  }
+}
+
+#auto-complete {
+  background-color: #fff;
+}
+
+.auto-complete-list {
+  .auto-complete-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 0;
+  }
+}
+
+.method-tag {
+  display: inline-block;
+  padding: 2px 0;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #fff;
+  min-width: 54px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.endpoint-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.endpoint-path {
+  font-size: 13px;
+}
+
+.endpoint-summary {
+  font-size: 11px;
+  color: #666;
+}
+
+[data-theme=dark] {
+  #search-dialog::backdrop {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  #search-button {
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+    color: #fff;
+  }
+
+  #auto-complete {
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+    color: #fff;
+  }
+
+  .auto-complete-list {
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+
+    .auto-complete-list-item {
+      background-color: #1f1f1f;
+      border-bottom: 1px solid #444;
+      color: #fff;
+
+      &:hover {
+        background-color: #333;
+      }
+    }
+
+    .auto-complete-list-item[aria-selected="true"] {
+      background-color: #333;
+    }
+  }
+
+  .endpoint-path {
+    color: #ccc;
+  }
+
+  .endpoint-summary {
+    color: #888;
+  }
+}</style>
+  <style>/* https://github.com/swagger-api/swagger-ui/issues/5327#issuecomment-742375520 */
+html[data-theme="dark"] {
+  body {
+    background: black;
+  }
+
+  .swagger-ui {
+    filter: invert(88%) hue-rotate(180deg);
+  }
+
+  .swagger-ui .microlight {
+      filter: invert(100%) hue-rotate(180deg);
+  }
+}
+
+.method-get {
+  background-color: #61affe;
+}
+
+.method-post {
+  background-color: #49cc90;
+}
+
+.method-put {
+  background-color: #fca130;
+}
+
+.method-patch {
+  background-color: #50e3c2;
+}
+
+.method-delete {
+  background-color: #f93e3e;
+}
+
+.method-head {
+  background-color: #9012fe;
+}
+
+.method-options {
+  background-color: #0d5aa7;
+}
+
+.method-trace {
+  background-color: #000;
+}</style>
+  <script>window.apiDocs = {"openapi":"3.1.0","info":{"title":"BFF CLI","description":"BFF for cli","version":"2.2.15"},"paths":{"/v1/health":{"get":{"tags":["Health"],"summary":"Endpoint","operationId":"endpoint_v1_health_get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{}}}}}}},"/":{"get":{"summary":"Root","description":"For testing if service's up.","operationId":"root__get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{}}}}}}},"/v1/projects":{"get":{"tags":["V1 Projects"],"summary":"Get project list that user have access to","description":"Get the project list that user have access to.","operationId":"APIProject_list_project_v1_projects_get","parameters":[{"required":false,"schema":{"title":"Page","default":0},"name":"page","in":"query"},{"required":false,"schema":{"title":"Page Size","default":10},"name":"page_size","in":"query"},{"required":false,"schema":{"title":"Order","default":"created_at"},"name":"order","in":"query"},{"required":false,"schema":{"title":"Order By","default":"desc"},"name":"order_by","in":"query"}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"name":"Sample project 1","code":"sampleproject1"},{"name":"Sample Project 2","code":"sampleproject2"}]}}},"type":"object","title":"ProjectListResponse","description":"Project list response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/project/{project_code}/files":{"post":{"tags":["V1 Files"],"summary":"pre upload file to the target zone","description":"PRE upload and check existence of file in project.","operationId":"APIProject_project_file_preupload_v1_project__project_code__files_post","parameters":[{"required":true,"schema":{"title":"Project Code"},"name":"project_code","in":"path"}],"requestBody":{"content":{"application/json":{"schema":{"properties":{"operator":{"type":"string","title":"Operator"},"job_type":{"type":"string","title":"Job Type"},"zone":{"type":"string","title":"Zone"},"current_folder_node":{"type":"string","title":"Current Folder Node"},"parent_folder_id":{"type":"string","title":"Parent Folder Id"},"data":{"items":{"type":"object"},"type":"array","title":"Data"},"folder_tags":{"items":{"type":"string"},"type":"array","title":"Folder Tags","default":[]}},"type":"object","required":["operator","job_type","zone","current_folder_node","parent_folder_id","data"],"title":"POSTProjectFile"}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{}}}},"type":"object","title":"POSTProjectFileResponse"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/project/{project_code}/files/resumable":{"post":{"tags":["V1 Files"],"summary":"resumable upload check","description":"Summary:\n    the api to check the uploaded chunk in the object\n    storage. Afterwards, cli will resume the previous\n    upload.\nParameter:\n    - bucket(str): the unique code of bucket\n    - zone(str): the greenromm or core\n    - object_infos(List[ObjectInfo]): the list of pairs contains following:\n        - object_path(str): the unique path in object storage\n        - resumable_id(str): the unique identifier for resumable upload\nreturn:\n    - result(list):\n        - object_path(str): the unique path in object storage\n        - resumable_id(str): the unique identifier for resumable upload\n        - chunks_info(dict[str: str]): the pair of chunk_number: etag","operationId":"APIProject_project_file_resumable_v1_project__project_code__files_resumable_post","parameters":[{"required":true,"schema":{"title":"Project Code"},"name":"project_code","in":"path"}],"requestBody":{"content":{"application/json":{"schema":{"properties":{"bucket":{"type":"string","title":"Bucket"},"zone":{"type":"string","title":"Zone"},"object_infos":{"items":{"properties":{"object_path":{"type":"string","title":"Object Path"},"resumable_id":{"type":"string","title":"Resumable Id"},"item_id":{"type":"string","title":"Item Id"}},"type":"object","required":["object_path","resumable_id","item_id"],"title":"ObjectInfo"},"type":"array","title":"Object Infos"}},"type":"object","required":["bucket","zone","object_infos"],"title":"ResumableUploadPOST","description":"Pre upload payload model."}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result"}},"type":"object","required":["result"],"title":"ResumableResponse"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/project/{project_code}/files/download":{"post":{"tags":["V1 Files"],"summary":"pre download file from the target zone","description":"PRE upload and check existence of file in project.","operationId":"APIProject_project_file_predownload_v1_project__project_code__files_download_post","parameters":[{"required":true,"schema":{"title":"Project Code"},"name":"project_code","in":"path"}],"requestBody":{"content":{"application/json":{"schema":{"properties":{"files":{"items":{"properties":{"id":{"type":"string","title":"Id"}},"type":"object","required":["id"],"title":"DownloadFileList"},"type":"array","title":"Files"},"zone":{"type":"string","title":"Zone"},"operator":{"type":"string","title":"Operator"},"container_code":{"type":"string","title":"Container Code"},"container_type":{"type":"string","title":"Container Type"}},"type":"object","required":["files","zone","operator","container_code","container_type"],"title":"PreDownloadProjectFile"}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{}}}},"type":"object","title":"POSTProjectFileResponse"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/project/{project_code}/search":{"get":{"tags":["V1 Projects"],"summary":"Get item in the project","description":"Get item in project.","operationId":"APIProject_get_project_item_v1_project__project_code__search_get","parameters":[{"required":true,"schema":{"title":"Project Code"},"name":"project_code","in":"path"},{"required":true,"schema":{"title":"Zone"},"name":"zone","in":"query"},{"required":true,"schema":{"title":"Path"},"name":"path","in":"query"},{"required":true,"schema":{"title":"Item Type"},"name":"item_type","in":"query"},{"required":true,"schema":{"title":"Container Type"},"name":"container_type","in":"query"}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{"id":1552,"labels":["Greenroom","Folder"],"global_entity_id":"bc8b4239-b22a-47dd-9d23-36ade331ebbf","folder_level":1,"list_priority":10,"folder_relative_path":"cli_folder_test23","time_lastmodified":"2021-05-10T22:18:29","uploader":"admin","name":"folder_test","time_created":"2021-05-10T22:18:29","project_code":"sampleproject","tags":[]}}}},"type":"object","title":"GetProjectFolderResponse"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/manifest":{"get":{"tags":["V1 Manifest"],"summary":"Get manifest list by project code","operationId":"APIManifest_list_manifest_v1_manifest_get","parameters":[{"required":true,"schema":{"type":"string","title":"Project Code"},"name":"project_code","in":"query"}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"manifest_name":"Manifest1","id":270,"attributes":[{"name":"attr1","type":"multiple_choice","optional":"false","value":"a1,a2"},{"name":"attr2","type":"text","optional":"true","value":"null"}]},{"manifest_name":"Manifest2","id":280,"attributes":[{"name":"a1","type":"multiple_choice","optional":"true","value":"1,2,3"}]}]}}},"type":"object","title":"ManifestListResponse","description":"Manifest list response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/manifest/attach":{"post":{"tags":["V1 Manifest"],"summary":"Attach manifest to file","description":"CLI will call manifest validation API before attach manifest to file after uploading process.","operationId":"APIManifest_attach_manifest_v1_manifest_attach_post","requestBody":{"content":{"application/json":{"schema":{"properties":{"manifest_name":{"type":"string","title":"Manifest Name"},"project_code":{"type":"string","title":"Project Code"},"attributes":{"type":"object","title":"Attributes"},"file_name":{"type":"string","title":"File Name"},"zone":{"type":"string","title":"Zone"}},"type":"object","required":["manifest_name","project_code","attributes","file_name","zone"],"title":"ManifestAttachPost","description":"Attach Manifest post model."}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"id":690,"labels":["File","Greenroom"],"global_entity_id":"file_data-11f0d2b4-7163...","operator":"","file_size":1048576,"tags":["tag"],"status":"ARCHIVED","path":"/data/core-storage/sampleproject/raw","time_lastmodified":"2021-02-19T19:06:06","uploader":"admin","process_pipeline":"","name":"testf1","time_created":"2021-02-17T20:59:48","guid":"6afa671d-f093-446c-a5a2-a495adcf29a5","full_path":"/data/core-storage/sampleproject/raw/testf1","manifest_id":270,"attr_attr1":"a1","attr_attr2":"test cli upload"}]}}},"type":"object","title":"ManifestAttachResponse","description":"Attach Manifest response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/manifest/export":{"get":{"tags":["V1 Manifest"],"summary":"Export manifest from project","description":"Export manifest from the project.","operationId":"APIManifest_export_manifest_v1_manifest_export_get","parameters":[{"required":true,"schema":{"title":"Project Code"},"name":"project_code","in":"query"},{"required":true,"schema":{"title":"Name"},"name":"name","in":"query"}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{"name":"Manifest1","project_code":"sampleproject","attributes":[{"name":"attr1","type":"multiple_choice","optional":"false","value":"a1,a2"},{"name":"attr2","type":"text","optional":"true","value":"null"}]}}}},"type":"object","title":"ManifestExportResponse","description":"Validate Manifest Response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/validate/manifest":{"post":{"tags":["V1 Validate"],"summary":"Validate manifest for project","description":"Validate the manifest based on the project.","operationId":"APIValidation_validate_manifest_v1_validate_manifest_post","requestBody":{"content":{"application/json":{"schema":{"properties":{"manifest_json":{"type":"object","title":"Manifest Json","default":{},"example":{"manifest_name":"Manifest1","project_code":"sampleproject","attributes":{"attr1":"a1","attr2":"test cli upload"},"file_path":"/data/core-storage/sampleproject/raw/testf1"}}},"type":"object","title":"ManifestValidatePost","description":"Validate Manifest post model."}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":"Valid"}}},"type":"object","title":"ManifestValidateResponse","description":"Validate Manifest Response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/validate/env":{"post":{"tags":["V1 Validate"],"summary":"Validate env for CLI commands","description":"Validate the environment accessible zone.","operationId":"APIValidation_validate_env_v1_validate_env_post","requestBody":{"content":{"application/json":{"schema":{"properties":{"action":{"type":"string","title":"Action"},"environ":{"type":"string","title":"Environ"},"zone":{"type":"string","title":"Zone"}},"type":"object","required":["action","environ","zone"],"title":"EnvValidatePost","description":"Validate Environment post model."}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":"valid"}}},"type":"object","title":"EnvValidateResponse","description":"Validate Manifest Response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/query/geid":{"post":{"tags":["V1 files"],"summary":"Query file/folder information by geid","description":"Get file/folder information by geid.","operationId":"APIFile_query_file_folders_by_geid_v1_query_geid_post","requestBody":{"content":{"application/json":{"schema":{"properties":{"geid":{"items":{},"type":"array","title":"Geid"}},"type":"object","required":["geid"],"title":"QueryDataInfo"}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"status":"Permission Denied","result":[],"geid":"2b60f036-9642-44e7-883b-c8ed247b1152"},{"status":"success","result":[{"id":23279,"labels":["Greenroom","File"],"global_entity_id":"3586fa29-4a68-b833-...","display_path":"admin/Testdateiäöüßs14","project_code":"sampleproject","version_id":"08cac0b1-75cf-4c2e-8bed-c43fa99d682f","operator":"admin","file_size":1048576,"tags":[],"status":"ARCHIVED","list_priority":20,"path":"/data/core-storage/sampleproject/admin","time_lastmodified":"2021-07-29T18:18:00","process_pipeline":"","uploader":"admin","parent_folder_geid":"22508bda-4a76-...","name":"Testdateiäöüßs14","time_created":"2021-07-29T18:18:00","guid":"12e23fb5-51d5-4ee9-8fb4-78fe9f9810d9","location":"minio://http://minio.minio:...","full_path":"/data/core-storage/sampleproject/..."}],"geid":"3586fa29-18ef-4a68-b833-5c04d3c2831c"},{"status":"Permission Denied","result":[],"geid":"a17fcf3a-179c-4099-a607-1438464527e2"},{"status":"File Not Exist","result":[],"geid":"80c08693-9ac8-4b94-bb02-9aebe0ec9f20"}]}}},"type":"object","title":"QueryDataInfoResponse"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/{project_code}/files/query":{"get":{"tags":["V1 files"],"summary":"Get files and folders in the project/folder","description":"List files and folders in project.","operationId":"APIFile_get_file_folders_v1__project_code__files_query_get","parameters":[{"required":true,"schema":{"title":"Project Code"},"name":"project_code","in":"path"},{"required":true,"schema":{"title":"Zone"},"name":"zone","in":"query"},{"required":true,"schema":{"title":"Folder"},"name":"folder","in":"query"},{"required":true,"schema":{"title":"Source Type"},"name":"source_type","in":"query"},{"required":true,"schema":{"title":"Page"},"name":"page","in":"query"},{"required":true,"schema":{"title":"Page Size"},"name":"page_size","in":"query"}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"id":6127,"labels":["File","Greenroom"],"global_entity_id":"baee1ca0-37a5-4c9b-afcb-1b2d4b2447aa","project_code":"sampleproject","operator":"admin","file_size":1048576,"tags":[],"list_priority":20,"status":"ARCHIVED","path":"/data/core-storage/sampleproject/raw/folders1","time_lastmodified":"2021-05-18T14:34:21","process_pipeline":"","uploader":"admin","parent_folder_geid":"c1c3766f-36bd-42db-8ca5-9040726cbc03","name":"Testdateiäöüßs2","time_created":"2021-05-18T14:34:21","guid":"4e06b8c5-8235-476e-b818-1ea5b0f0043c","full_path":"/data/core-storage/sampleproject/..."},{"id":2842,"labels":["Greenroom","Folder"],"folder_level":1,"global_entity_id":"7a71ed22-9cd0-465e-a18e-b66fda2c4e04","list_priority":10,"folder_relative_path":"folders1","time_lastmodified":"2021-05-11T20:17:51","uploader":"admin","name":"folders","time_created":"2021-05-11T20:17:51","project_code":"sampleproject","tags":[]}]}}},"type":"object","title":"GetProjectFileListResponse"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/datasets":{"get":{"tags":["V1 dataset","V1 dataset"],"summary":"List all Datasets user can access.","operationId":"ListDatasets___call___v1_datasets_get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{}}}}}}},"/v1/dataset/{dataset_code}":{"get":{"tags":["V1 dataset","V1 dataset"],"summary":"Get dataset detail based on the dataset code","description":"Summary:\n    The api will integrate with dataset detail and versions\n    api to have a joint response for cli tool.\nPath Parameter:\n    - dataset_code(str): unique identifier of dataset\nParameter:\n    - page(int): page number\n    - page_size(str): page size\nreturn:\n    - result(dict): dataset detail info","operationId":"GetDataset_get_dataset_v1_dataset__dataset_code__get","parameters":[{"required":true,"schema":{"title":"Dataset Code"},"name":"dataset_code","in":"path"},{"required":false,"schema":{"title":"Page","default":0},"name":"page","in":"query"},{"required":false,"schema":{"title":"Page Size","default":10},"name":"page_size","in":"query"}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{"general_info":{"id":31401,"labels":["Dataset"],"global_entity_id":"3834290c-90c6-4c21-8642-c1f79cf2a145","creator":"admin","modality":[],"code":"sampletestdataset","project_geid":"6c62dc07-a0f4-4a58-9491-d4a46c2adc79","total_files":6,"description":"1","source":"","title":"SAMPLE-dataset","type":"GENERAL","tags":[],"license":"","time_lastmodified":"2021-08-12T18:30:55","size":6291456,"collection_method":[],"name":"sampletestdataset","time_created":"2021-08-12T17:58:45","authors":["admin"]},"version_detail":[{"dataset_code":"sampletestdataset","dataset_geid":"3834290c-90c6-4c21-8642-c1f79cf2a145","version":"1.0","created_by":"admin","created_at":"2021-08-12 18:15:54.115753","location":"minio://http://... 14:15:53.608877.zip","notes":"1"}],"version_no":1}}}},"type":"object","title":"DatasetDetailResponse","description":"Dataset list response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}},"/v1/lineage":{"post":{"tags":["V1 Lineage"],"summary":"[PENDING] Create lineage for given input and output id","operationId":"APILineage_create_lineage_v1_lineage_post","requestBody":{"content":{"application/json":{"schema":{"properties":{"project_code":{"type":"string","title":"Project Code"},"input_id":{"type":"string","title":"Input Id"},"output_id":{"type":"string","title":"Output Id"},"input_path":{"type":"string","title":"Input Path"},"output_path":{"type":"string","title":"Output Path"},"action_type":{"type":"string","title":"Action Type"},"description":{"type":"string","title":"Description"}},"type":"object","required":["project_code","input_id","output_id","input_path","output_path","action_type","description"],"title":"LineageCreatePost"}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"message":"Succeed"}}},"type":"object","title":"LineageCreateResponse","description":"Lineage Creation Response class."}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"}}}}}}}},"components":{"schemas":{"DatasetDetailResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{"general_info":{"id":31401,"labels":["Dataset"],"global_entity_id":"3834290c-90c6-4c21-8642-c1f79cf2a145","creator":"admin","modality":[],"code":"sampletestdataset","project_geid":"6c62dc07-a0f4-4a58-9491-d4a46c2adc79","total_files":6,"description":"1","source":"","title":"SAMPLE-dataset","type":"GENERAL","tags":[],"license":"","time_lastmodified":"2021-08-12T18:30:55","size":6291456,"collection_method":[],"name":"sampletestdataset","time_created":"2021-08-12T17:58:45","authors":["admin"]},"version_detail":[{"dataset_code":"sampletestdataset","dataset_geid":"3834290c-90c6-4c21-8642-c1f79cf2a145","version":"1.0","created_by":"admin","created_at":"2021-08-12 18:15:54.115753","location":"minio://http://... 14:15:53.608877.zip","notes":"1"}],"version_no":1}}}},"type":"object","title":"DatasetDetailResponse","description":"Dataset list response class."},"DownloadFileList":{"properties":{"id":{"type":"string","title":"Id"}},"type":"object","required":["id"],"title":"DownloadFileList"},"EAPIResponseCode":{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."},"EnvValidatePost":{"properties":{"action":{"type":"string","title":"Action"},"environ":{"type":"string","title":"Environ"},"zone":{"type":"string","title":"Zone"}},"type":"object","required":["action","environ","zone"],"title":"EnvValidatePost","description":"Validate Environment post model."},"EnvValidateResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":"valid"}}},"type":"object","title":"EnvValidateResponse","description":"Validate Manifest Response class."},"GetProjectFileListResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"id":6127,"labels":["File","Greenroom"],"global_entity_id":"baee1ca0-37a5-4c9b-afcb-1b2d4b2447aa","project_code":"sampleproject","operator":"admin","file_size":1048576,"tags":[],"list_priority":20,"status":"ARCHIVED","path":"/data/core-storage/sampleproject/raw/folders1","time_lastmodified":"2021-05-18T14:34:21","process_pipeline":"","uploader":"admin","parent_folder_geid":"c1c3766f-36bd-42db-8ca5-9040726cbc03","name":"Testdateiäöüßs2","time_created":"2021-05-18T14:34:21","guid":"4e06b8c5-8235-476e-b818-1ea5b0f0043c","full_path":"/data/core-storage/sampleproject/..."},{"id":2842,"labels":["Greenroom","Folder"],"folder_level":1,"global_entity_id":"7a71ed22-9cd0-465e-a18e-b66fda2c4e04","list_priority":10,"folder_relative_path":"folders1","time_lastmodified":"2021-05-11T20:17:51","uploader":"admin","name":"folders","time_created":"2021-05-11T20:17:51","project_code":"sampleproject","tags":[]}]}}},"type":"object","title":"GetProjectFileListResponse"},"GetProjectFolderResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{"id":1552,"labels":["Greenroom","Folder"],"global_entity_id":"bc8b4239-b22a-47dd-9d23-36ade331ebbf","folder_level":1,"list_priority":10,"folder_relative_path":"cli_folder_test23","time_lastmodified":"2021-05-10T22:18:29","uploader":"admin","name":"folder_test","time_created":"2021-05-10T22:18:29","project_code":"sampleproject","tags":[]}}}},"type":"object","title":"GetProjectFolderResponse"},"HTTPValidationError":{"properties":{"detail":{"items":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"},"LineageCreatePost":{"properties":{"project_code":{"type":"string","title":"Project Code"},"input_id":{"type":"string","title":"Input Id"},"output_id":{"type":"string","title":"Output Id"},"input_path":{"type":"string","title":"Input Path"},"output_path":{"type":"string","title":"Output Path"},"action_type":{"type":"string","title":"Action Type"},"description":{"type":"string","title":"Description"}},"type":"object","required":["project_code","input_id","output_id","input_path","output_path","action_type","description"],"title":"LineageCreatePost"},"LineageCreateResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"message":"Succeed"}}},"type":"object","title":"LineageCreateResponse","description":"Lineage Creation Response class."},"ManifestAttachPost":{"properties":{"manifest_name":{"type":"string","title":"Manifest Name"},"project_code":{"type":"string","title":"Project Code"},"attributes":{"type":"object","title":"Attributes"},"file_name":{"type":"string","title":"File Name"},"zone":{"type":"string","title":"Zone"}},"type":"object","required":["manifest_name","project_code","attributes","file_name","zone"],"title":"ManifestAttachPost","description":"Attach Manifest post model."},"ManifestAttachResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"id":690,"labels":["File","Greenroom"],"global_entity_id":"file_data-11f0d2b4-7163...","operator":"","file_size":1048576,"tags":["tag"],"status":"ARCHIVED","path":"/data/core-storage/sampleproject/raw","time_lastmodified":"2021-02-19T19:06:06","uploader":"admin","process_pipeline":"","name":"testf1","time_created":"2021-02-17T20:59:48","guid":"6afa671d-f093-446c-a5a2-a495adcf29a5","full_path":"/data/core-storage/sampleproject/raw/testf1","manifest_id":270,"attr_attr1":"a1","attr_attr2":"test cli upload"}]}}},"type":"object","title":"ManifestAttachResponse","description":"Attach Manifest response class."},"ManifestExportResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{"name":"Manifest1","project_code":"sampleproject","attributes":[{"name":"attr1","type":"multiple_choice","optional":"false","value":"a1,a2"},{"name":"attr2","type":"text","optional":"true","value":"null"}]}}}},"type":"object","title":"ManifestExportResponse","description":"Validate Manifest Response class."},"ManifestListResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"manifest_name":"Manifest1","id":270,"attributes":[{"name":"attr1","type":"multiple_choice","optional":"false","value":"a1,a2"},{"name":"attr2","type":"text","optional":"true","value":"null"}]},{"manifest_name":"Manifest2","id":280,"attributes":[{"name":"a1","type":"multiple_choice","optional":"true","value":"1,2,3"}]}]}}},"type":"object","title":"ManifestListResponse","description":"Manifest list response class."},"ManifestValidatePost":{"properties":{"manifest_json":{"type":"object","title":"Manifest Json","default":{},"example":{"manifest_name":"Manifest1","project_code":"sampleproject","attributes":{"attr1":"a1","attr2":"test cli upload"},"file_path":"/data/core-storage/sampleproject/raw/testf1"}}},"type":"object","title":"ManifestValidatePost","description":"Validate Manifest post model."},"ManifestValidateResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":"Valid"}}},"type":"object","title":"ManifestValidateResponse","description":"Validate Manifest Response class."},"ObjectInfo":{"properties":{"object_path":{"type":"string","title":"Object Path"},"resumable_id":{"type":"string","title":"Resumable Id"},"item_id":{"type":"string","title":"Item Id"}},"type":"object","required":["object_path","resumable_id","item_id"],"title":"ObjectInfo"},"POSTProjectFile":{"properties":{"operator":{"type":"string","title":"Operator"},"job_type":{"type":"string","title":"Job Type"},"zone":{"type":"string","title":"Zone"},"current_folder_node":{"type":"string","title":"Current Folder Node"},"parent_folder_id":{"type":"string","title":"Parent Folder Id"},"data":{"items":{"type":"object"},"type":"array","title":"Data"},"folder_tags":{"items":{"type":"string"},"type":"array","title":"Folder Tags","default":[]}},"type":"object","required":["operator","job_type","zone","current_folder_node","parent_folder_id","data"],"title":"POSTProjectFile"},"POSTProjectFileResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":{}}}},"type":"object","title":"POSTProjectFileResponse"},"PreDownloadProjectFile":{"properties":{"files":{"items":{"properties":{"id":{"type":"string","title":"Id"}},"type":"object","required":["id"],"title":"DownloadFileList"},"type":"array","title":"Files"},"zone":{"type":"string","title":"Zone"},"operator":{"type":"string","title":"Operator"},"container_code":{"type":"string","title":"Container Code"},"container_type":{"type":"string","title":"Container Type"}},"type":"object","required":["files","zone","operator","container_code","container_type"],"title":"PreDownloadProjectFile"},"ProjectListResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"name":"Sample project 1","code":"sampleproject1"},{"name":"Sample Project 2","code":"sampleproject2"}]}}},"type":"object","title":"ProjectListResponse","description":"Project list response class."},"QueryDataInfo":{"properties":{"geid":{"items":{},"type":"array","title":"Geid"}},"type":"object","required":["geid"],"title":"QueryDataInfo"},"QueryDataInfoResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result","default":{},"example":{"code":200,"error_msg":"","result":[{"status":"Permission Denied","result":[],"geid":"2b60f036-9642-44e7-883b-c8ed247b1152"},{"status":"success","result":[{"id":23279,"labels":["Greenroom","File"],"global_entity_id":"3586fa29-4a68-b833-...","display_path":"admin/Testdateiäöüßs14","project_code":"sampleproject","version_id":"08cac0b1-75cf-4c2e-8bed-c43fa99d682f","operator":"admin","file_size":1048576,"tags":[],"status":"ARCHIVED","list_priority":20,"path":"/data/core-storage/sampleproject/admin","time_lastmodified":"2021-07-29T18:18:00","process_pipeline":"","uploader":"admin","parent_folder_geid":"22508bda-4a76-...","name":"Testdateiäöüßs14","time_created":"2021-07-29T18:18:00","guid":"12e23fb5-51d5-4ee9-8fb4-78fe9f9810d9","location":"minio://http://minio.minio:...","full_path":"/data/core-storage/sampleproject/..."}],"geid":"3586fa29-18ef-4a68-b833-5c04d3c2831c"},{"status":"Permission Denied","result":[],"geid":"a17fcf3a-179c-4099-a607-1438464527e2"},{"status":"File Not Exist","result":[],"geid":"80c08693-9ac8-4b94-bb02-9aebe0ec9f20"}]}}},"type":"object","title":"QueryDataInfoResponse"},"ResumableResponse":{"properties":{"code":{"allOf":[{"enum":[200,500,400,404,403,401,409],"title":"EAPIResponseCode","description":"An enumeration."}],"default":200},"error_msg":{"type":"string","title":"Error Msg","default":""},"result":{"type":"object","title":"Result"}},"type":"object","required":["result"],"title":"ResumableResponse"},"ResumableUploadPOST":{"properties":{"bucket":{"type":"string","title":"Bucket"},"zone":{"type":"string","title":"Zone"},"object_infos":{"items":{"properties":{"object_path":{"type":"string","title":"Object Path"},"resumable_id":{"type":"string","title":"Resumable Id"},"item_id":{"type":"string","title":"Item Id"}},"type":"object","required":["object_path","resumable_id","item_id"],"title":"ObjectInfo"},"type":"array","title":"Object Infos"}},"type":"object","required":["bucket","zone","object_infos"],"title":"ResumableUploadPOST","description":"Pre upload payload model."},"ValidationError":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"}}}}</script>
+</head>
+<body>
+  <button id="search-button">
+    <span class="icon material-symbols-outlined">search</span>
+    <span class="text"></span>
+  </button>
+  <dialog id="search-dialog">
+    <input id="auto-complete" autocomplete="off">
+  </dialog>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/swagger-ui-dist@5.26.2/swagger-ui-bundle.js" crossorigin></script>
+  <script>// eslint-disable-next-line no-unused-vars
+class SearchDialog {
+  dialog
+  autocomplete
+
+  constructor(dialogId, inputId, openapi) {
+    this.dialog = document.getElementById(dialogId)
+    if (!this.dialog) {
+      throw new Error(`Dialog with id "${dialogId}" not found`)
+    }
+
+    this.autocomplete = new autoComplete({
+      selector: `#${inputId}`,
+      placeHolder: 'Search endpoints',
+      data: {
+        src: this.filterEndpoints(openapi),
+        keys: ['searchKey'],
+      },
+      searchEngine: 'loose',
+      threshold: 0,
+      resultsList: {
+        maxResults: undefined,
+        class: 'auto-complete-list',
+        element: (list, data) => {
+          if (data.results.length > 0) {
+            list.innerHTML = ''
+            data.results.forEach((item) => {
+              const li = document.createElement('li')
+              li.className = 'auto-complete-list-item'
+              li.innerHTML = `
+              <div class="method-tag method-${item.value.method.toLowerCase()}">${item.value.method}</div>
+              <div class="endpoint-info">
+                <div class="endpoint-path">${item.value.path}</div>
+                <div class="endpoint-summary">${item.value.summary}</div>
+              </div>
+            `
+              list.appendChild(li)
+            })
+          }
+        },
+      },
+    })
+
+    this.dialog.addEventListener('click', (event) => {
+      if (event.target === this.dialog) {
+        this.hide()
+      }
+    })
+  }
+
+  on(event, callback) {
+    if (event === 'select') {
+      this.autocomplete.input.addEventListener('selection', (event) => {
+        callback(event.detail.selection.value)
+      })
+    } else {
+      throw new Error(`Unsupported event: ${event}`)
+    }
+  }
+
+  show() {
+    this.autocomplete.input.value = ''
+    this.autocomplete.start()
+    this.dialog.showModal()
+  }
+
+  hide() {
+    this.dialog.close()
+  }
+
+  filterEndpoints(openapi) {
+    const endpoints = []
+    const paths = openapi.paths
+    for (const path in paths) {
+      const methods = Object.keys(paths[path])
+      for (const method of methods) {
+        if (method === 'parameters') {
+          continue
+        }
+        const summary = paths[path][method].summary || ''
+        endpoints.push({
+          searchKey: `${method} ${path} ${summary}`,
+          method: method.toUpperCase(),
+          path,
+          operationId: paths[path][method].operationId,
+          tag: paths[path][method].tags
+            ? paths[path][method].tags[0]
+            : 'default',
+          summary,
+        })
+      }
+    }
+    return endpoints
+  }
+}
+</script>
+  <script>const THEMES = ['light', 'dark']
+const themeParam = new URLSearchParams(window.location.search).get('theme')
+if (THEMES.includes(themeParam)) {
+  document.documentElement.setAttribute('data-theme', themeParam)
+}
+
+// ref. https://developer.mozilla.org/en-US/docs/Web/API/Navigator/platform#examples
+const modifierKeyPrefix =
+  navigator.platform.startsWith('Mac') || navigator.platform === 'iPhone'
+    ? '⌘' // command key
+    : '^' // control key
+
+/* ref. https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/ */
+window.onload = () => {
+  window.ui = SwaggerUIBundle({
+    spec: window.apiDocs,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+  })
+
+  const searchButton = document.querySelector('#search-button')
+  searchButton.addEventListener('click', () => searchDialog.show())
+  searchButton.querySelector('.text').textContent =
+    `Search ${modifierKeyPrefix}+K`
+
+  // eslint-disable-next-line no-undef
+  const searchDialog = new SearchDialog(
+    'search-dialog',
+    'auto-complete',
+    window.apiDocs,
+  )
+  searchDialog.on('select', (selection) => {
+    const tag = selection.tag
+    const operationId = selection.operationId
+    const url = new URL(location.href)
+    url.hash = `#/${tag}/${operationId}`
+    location.href = url.toString()
+    searchDialog.hide()
+
+    const opblock = document.querySelector(`#operations-${tag}-${operationId}`)
+    opblock.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+    const opblockButton = opblock.querySelector(
+      '.opblock-summary-control[aria-expanded="false"]',
+    )
+    if (opblockButton) {
+      opblockButton.click()
+    }
+  })
+
+  document.addEventListener('keydown', function (e) {
+    const isCmdOrCtrl = modifierKeyPrefix === '⌘' ? e.metaKey : e.ctrlKey
+    if (isCmdOrCtrl && e.key.toLowerCase() === 'k') {
+      searchDialog.show()
+      e.preventDefault()
+    }
+  })
+}
+</script>
+</body>
+</html>
