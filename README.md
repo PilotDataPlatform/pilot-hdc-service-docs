@@ -1,6 +1,6 @@
 # Pilot-HDC Service Documentation
 
-Documentation related to all services in the Pilot-HDC project.
+Documentation related to all web services in the Pilot-HDC project.
 
 ## Overview
 
@@ -11,7 +11,8 @@ This repository contains the published service documentation for the Pilot-HDC p
 - [API documentation](https://pilotdataplatform.github.io/pilot-hdc-service-docs/)
 - [Infrastructure documentation](https://github.com/PilotDataPlatform/pilot-hdc-ovh-infra)
 - [Kubernetes management documentation](https://github.com/PilotDataPlatform/pilot-hdc-platform-gitops)
-
+- [Services dependency matrix](/docs/dependency-matrix/Pilot-HDC%20Dependency%20Matrix.xlsx)
+- [Services dependencies software versions](/docs/software-versions/Pilot-HDC%20Software%20Versions.xlsx)
 
 ## Acknowledgements
 
